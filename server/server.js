@@ -7,6 +7,7 @@ const messagesRoute = require("./routes/messagesRoutes");
 const userRoutes=require('./routes/userRoutes')
 const path = require("path");
 const app = express();
+const s=require('http').Server(app)
 require("dotenv").config();
 app.use(cors())
 app.use(express.json())
@@ -40,7 +41,7 @@ mongoose.connect(process.env.MONGO_URL,{
     console.log(err.message)
 })
 
-const server=app.listen(process.env.PORT,()=>{
+const server=s.listen(process.env.PORT,()=>{
     console.log(`server started on port ${process.env.PORT}`)
 })
 
